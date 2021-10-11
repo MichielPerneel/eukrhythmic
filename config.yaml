@@ -1,21 +1,21 @@
 ### Parameters expected to be changed under normal use ###
 ## INPUT DATA AND FORMATTING ##
 # formatted input file; described in README
-jobname: sample
-metaT_sample: input/metaT_wap.txt #input/sampledata.txt
-spikefile: /vortexfs1/omics/alexander/ncohen/BATS2019-clio-metaT/spike/spike.fa
-spiketable: /vortexfs1/omics/alexander/ncohen/BATS2019-clio-metaT/spike/percentmapped_bbmap_volumes.tab
-adapter: static/adapters.fa
-## DIRECTORIES DURING PROCESSING ##
-inputDIR: /vortexfs1/omics/alexander/data/WAP
-outputDIR: ../WAP_5May2021
-assembledDIR: assembled
-renamedDIR: renamed
+jobname: illumina_pilot 
+metaT_sample: /data/gent/vo/001/gvo00125/vsc43619/eukrhythmic/input/input.txt
+spikefile: 0
+spiketable: 0 
+adapter:
+# DIRECTORIES DURING PROCESSING ##
+inputDIR: /data/gent/vo/001/gvo00125/vsc43619/raw
+outputDIR: /data/gent/vo/001/gvo00125/vsc43619/illumina_pilot_eukrhythmic
+assembledDIR: /data/gent/vo/001/gvo00125/vsc43619/assembly_eukrhythmic
+renamedDIR: /data/gent/vo/001/gvo00125/vsc43619/renamed
 # this is where all the intermediate outputs will go.
-scratch: ../testscratch 
+scratch:  /data/gent/vo/001/gvo00125/vsc43619/testscratch
 ## ANALYSIS OPTIONS ##
-kegg: /vortexfs1/omics/alexander/data/KEGG
-kegg_prot_db: /vortexfs1/omics/alexander/data/KEGG/diamond_db/family_eukaryotes.dmnd
+kegg: 
+kegg_prot_db: 
 busco:
     - https://www.dropbox.com/s/uqbag10d3soks68/eukaryota_odb10.2019-11-20.tar.gz?dl=1
 pfam: ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
@@ -27,14 +27,14 @@ checkqual: 1
 kmers:
     - 31
     - 50
-#    - 110
+    - 110
 assemblers:
     - megahit
 #    - velvet
     - spades
     - trinity
     - transabyss
-separategroups: 1
+separategroups: 0
 
 ### Parameters only to be changed by advanced users ###
 transdecodercutoff: 50

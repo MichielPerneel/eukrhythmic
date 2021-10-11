@@ -34,22 +34,24 @@ if [[ "$(cat config.yaml | grep spikefile | cut -d ":" -f 2 | cut -d " " -f 2)" 
 PARAMS=""
 while (( "$#" )); do
   case "$1" in
-    --subroutine)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+    --jobs)
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         JOBS=$2
         shift 2
       else
         echo "Error: No number of jobs ($1) provided." >&2
         exit 1
       fi
+      ;;
     --subroutine)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         SUBROUTINE=$2
         shift 2
       else
         echo "Error: No subroutine ($1) provided." >&2
         exit 1
       fi
+      ;;
     -q|--check-quality)
       CHECKQUALFLAG=1
       sed -i "/checkqual/c\checkqual: $CHECKQUALFLAG" config.yaml
@@ -72,7 +74,7 @@ while (( "$#" )); do
       shift
       ;;
     -n|--job-name)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         JOBNAMEARG=$2
         sed -i "/jobname/c\jobname: $JOBNAMEARG" config.yaml
         shift 2
@@ -82,7 +84,7 @@ while (( "$#" )); do
       fi
       ;;
     -s|--sample-file-name)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         METATSAMPLEARG=$2
         sed -i "/metaT_sample/c\metaT_sample: $METATSAMPLEARG" config.yaml
         shift 2
@@ -92,7 +94,7 @@ while (( "$#" )); do
       fi
       ;;
     -o|--out-dir)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         OUTDIRARG=$2
         sed -i "/outputDIR/c\outputDIR: $OUTDIRARG" config.yaml
         shift 2
@@ -102,7 +104,7 @@ while (( "$#" )); do
       fi
       ;;
     -i|--in-dir)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         INDIRARG=$2
         sed -i "/inputDIR/c\inputDIR: $INDIRARG" config.yaml
         shift 2
@@ -112,7 +114,7 @@ while (( "$#" )); do
       fi
       ;;
     -c|--scratch-dir)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         SCRATCHDIRARG=$2
         sed -i "/scratch/c\scratch: $SCRATCHDIRARG" config.yaml
         shift 2
@@ -122,7 +124,7 @@ while (( "$#" )); do
       fi
       ;;
     -b|--run-bbmap)
-      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
         RUNBBMAPARG=$2
         sed -i "/spikefile/c\spikefile: $RUNBBMAPARG" config.yaml
         RUNBBMAPFLAG=1
